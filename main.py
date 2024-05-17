@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import routes.ImagesPredict as ImagesPredict
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -25,3 +26,5 @@ app.add_middleware(
     allow_methods=["*"], # Allows all methods
     allow_headers=["*"], # Allows all headers
 )
+
+app.mount("/", StaticFiles(directory="static",html = True), name="static")
