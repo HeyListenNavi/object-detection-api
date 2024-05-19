@@ -1,5 +1,7 @@
+from pydantic import BaseModel
+
 # Models
-class Prediction:
+class Prediction(BaseModel):
     x_coordinate: float
     y_coordinate: float
     x2_coordinate: float

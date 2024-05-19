@@ -5,18 +5,6 @@ from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
-origins = [
-    "http://127.0.0.1:8000/predict"
-    "http://127.0.0.1:8080"
-    "127.0.0.1:8000"
-    "127.0.0.1:8080"
-    "localhost:8000"
-    "localhost:8080"
-    "http://localhost:8000"
-    "http://localhost:8080"
-]
-
-
 app.include_router(ImagesPredict.router)
 
 app.add_middleware(
