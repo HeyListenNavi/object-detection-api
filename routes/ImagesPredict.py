@@ -5,8 +5,12 @@ import json
 import base64
 from ultralytics import YOLO
 from models import Prediction, Object
+import torch
 
-model = YOLO("gun_detection_model.pt")
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+print(f'Using device: {device}')
+
+model = YOLO("gun_detection_model.pt").to(device)
 
 router = APIRouter()
 
