@@ -25,7 +25,7 @@ router = APIRouter()
 #       "object_name": Objeto 3"
 #   },
 # ]
-@router.get("/predict")
+@router.post("/predict")
 def predict(base64_image: str = Body(...)):
     # Cut the data url metadata and encode it in ascii
     base64_image = base64_image.split(",")[1]
