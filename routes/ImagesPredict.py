@@ -50,22 +50,21 @@ def predict(base64_image: str = Body(...)):
                 boxes = result.boxes.cpu().numpy()
 
                 for box in boxes:
-                    if box.conf[0].tolist()[0] >= 60:
-                        # Create a response based on the prediction response model
-                        prediction = Prediction()
-                        coordinates = box.xyxy[0].tolist()
-                        inferenced_object = box.cls[0].tolist()
-                        probability = box.conf[0].tolist()
-                        inferenced_object = model.names[inferenced_object]
+                    # Create a response based on the prediction response model
+                    prediction = Prediction()
+                    coordinates = box.xyxy[0].tolist()
+                    inferenced_object = box.cls[0].tolist()
+                    probability = box.conf[0].tolist()
+                    inferenced_object = model.names[inferenced_object]
 
-                        prediction.x_coordinate = coordinates[0]
-                        prediction.y_coordinate = coordinates[1]
-                        prediction.x2_coordinate = coordinates[2]
-                        prediction.y2_coordinate = coordinates[3]
-                        prediction.detected_object = inferenced_object
-                        prediction.probs = probability
+                    prediction.x_coordinate = coordinates[0]
+                    prediction.y_coordinate = coordinates[1]
+                    prediction.x2_coordinate = coordinates[2]
+                    prediction.y2_coordinate = coordinates[3]
+                    prediction.detected_object = inferenced_object
+                    prediction.probs = probability
 
-                        response.append(prediction)
+                    response.append(prediction)
         except Exception as e:
             raise HTTPException(500, str(e))
     else:
