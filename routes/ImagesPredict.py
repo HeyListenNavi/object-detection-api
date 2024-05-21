@@ -46,9 +46,7 @@ def predict(base64_image: str = Body(...)):
     if results[0].__len__() > 0:
         try:
             for result in results:
-
                 boxes = result.boxes.cpu().numpy()
-
                 for box in boxes:
                     # Create a response based on the prediction response model
                     prediction = Prediction()
